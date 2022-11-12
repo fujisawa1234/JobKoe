@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render "user/users/info", user: @user %>
+    </div>
+
+    <div class="col-md-9">
+      <table class="table">
+        <thead>
+          <tr class="text-center">
+            <th>投稿一覧</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @posts.each do |posts| %>
+            <tr>
+              <td><%= link_to posts.body, post_path(posts) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

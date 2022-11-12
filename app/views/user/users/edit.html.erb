@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <%= form_with model:@user do |f| %>
+      <table class="table table-borderless">
+        <thead>
+          <tr class="my-5">
+            <th><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %></th>
+          </tr>
+
+          <tr class="my-5">
+            <th><%= f.text_field :name, placeholder: "名前" %></th>
+          </tr>
+
+          <tr class="my-5">
+            <th><%= f.submit "保存", class: "btn btn-success" %></th>
+          </tr>
+        </thead>
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>
