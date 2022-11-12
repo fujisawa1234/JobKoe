@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <table class="table">
+        <tr>
+          <%= image_tag @post.user.get_profile_image, size:"50x50" %>
+          <%= @post.user.name %>さん
+          投稿日:<%= @post.created_at.strftime('%Y/%m/%d') %>
+        </tr>
+        <tr>
+          <td><%= @post.body %></td>
+          <td><%= link_to "投稿を編集", edit_post_path(@post) %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

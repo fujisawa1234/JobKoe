@@ -1,0 +1,15 @@
+<table class="table table-borderless border">
+  <tr class="my-3 d-flex align-items-center justify-content-center">
+    <th><%= image_tag user.get_profile_image, size:"200x200" %></th>
+  </tr>
+
+  <tr class="my-3 text-center">
+    <th><%= user.name  %></th>
+  </tr>
+
+  <% if user == current_user %>
+  <tr class="my-3">
+    <th><%= link_to "編集", edit_user_path(user), class: "btn btn-outline-secondary btn-block" %></th>
+  </tr>
+  <% end %>
+</table>
