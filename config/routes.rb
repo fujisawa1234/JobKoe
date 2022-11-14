@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   
   scope module: :user do
     root :to => "posts#index"
+    get "search" => "searches#search"
     resources :posts
     resources :users, only: [:show,:edit,:update]
   end
