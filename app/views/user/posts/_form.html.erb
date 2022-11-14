@@ -1,9 +1,15 @@
 <%= form_with model:posts do |f| %>
   <div class="form-group">
-    <%= f.text_area :body %>
+    <%= f.text_area :body, size: "100x10" %>
   </div>
 
-  <div class="form-group">
-    <%= f.submit class: "btn btn-success" %>
-  </div>
+  <% if posts.id.present? %>
+    <div class="form-group">
+      <%= f.submit "更新", class: "btn btn-success btn-lg" %>
+    </div>
+  <% else %>
+    <div class="form-group">
+      <%= f.submit "投稿", class: "btn btn-success btn-lg" %>
+    </div>
+  <% end %>
 <% end %>
