@@ -3,13 +3,21 @@
     <div class="col">
       <table class="table">
         <tr>
-          <%= image_tag @post.user.get_profile_image, size:"50x50" %>
-          <%= @post.user.name %>さん
-          投稿日:<%= @post.created_at.strftime('%Y/%m/%d') %>
+          <thead>
+            <th>
+              <%= image_tag @post.user.get_profile_image, size:"100x100" %>
+              <%= @post.user.name %>さん
+              <% if @post.user == current_user %>
+                <%= link_to "投稿を編集", edit_post_path(@post) %>
+              <% end %>
+            </th>
+            <th class="text-right">
+              投稿日:<%= @post.created_at.strftime('%Y/%m/%d') %>
+            </th>
+          </thead>
         </tr>
         <tr>
           <td><%= @post.body %></td>
-          <td><%= link_to "投稿を編集", edit_post_path(@post) %></td>
         </tr>
       </table>
     </div>
