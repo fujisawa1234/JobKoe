@@ -11,11 +11,13 @@ class User::PostsController < ApplicationController
   end
 
   def index
+    @tag_lists = Tag.all
     @posts = Post.all
   end
 
   def show
     @post = Post.find(params[:id])
+    @post_comment = PostComment.new
   end
 
   def edit

@@ -6,6 +6,11 @@
         <tr>
           <th><%= link_to "投稿", new_post_path, class: "btn btn-primary btn-lg" %></th>
           <th class="text-right"><%= render "user/searches/search" %></th>
+          <th>
+            <%#= @tag_lists.each do |list| %>
+              <%#= link_to list.tag_name, tag_posts_path(tag_id: list.id) %>
+            <%# end %>
+          </th>
         </tr>
       </table>
     </div>
