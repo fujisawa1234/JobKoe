@@ -1,37 +1,24 @@
 <div class="container">
-  <div class="row mt-3">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
-      <table class="table table-borderless">
-        <tr>
-          <th><%= link_to "投稿", new_post_path, class: "btn btn-primary btn-lg" %></th>
-          <th class="text-right"><%= render "user/searches/search" %></th>
-          <th>
-            <%#= @tag_lists.each do |list| %>
-              <%#= link_to list.tag_name, tag_posts_path(tag_id: list.id) %>
-            <%# end %>
-          </th>
-        </tr>
-      </table>
-    </div>
-  </div>
-
-  <div class="row">
+  <div class="row my-3">
     <div class="col-md-3">
       <% if user_signed_in? %>
         <%= render "user/users/info", user: current_user %>
       <% end %>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-8 offset-md-1">
+      <nav class="nav nav-fill mb-3">
+        <li class="nav-item"><%= link_to "投稿", new_post_path, class: "btn btn-primary btn-lg" %></li>
+        <li class="nav-item"><%= render "user/searches/search" %><li>
+        <li class="nav-item">
+          <% @tag_list.each do |list| %>
+            <%= link_to list.tag_name, tag_posts_path(tag_id: list.id) %>
+          <% end %>
+        </li>
+      </nav>
+      
+      <h4 class="text-center mb-3">質問一覧</h4>
       <table class="table table-hover">
-        <thead>
-          <tr class="text-right">
-            <th>質問一覧</th>
-            <th class="colspan-3"></th>
-          </tr>
-        </thead>
-
         <tbody>
           <% @posts.each do |posts| %>
             <tr>
@@ -40,7 +27,9 @@
                   <%= image_tag posts.user.get_profile_image, size:"50x50" %>
                 <% end %>
               </td>
-              <td><%= link_to posts.body, post_path(posts) %></td>
+              <td class="text-dark"><%= link_to posts.body.truncate(30), post_path(posts) %></td>
+              <td class="small"><%= posts.favorites.count %> いいね</td>
+              <td class="small">コメント:<%= posts.post_comments.count %>件</td>
             </tr>
           <% end %>
         </tbody>

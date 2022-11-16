@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row my-3">
+    <div class="col-md-8 offset-md-2">
+      <h3 class="text-center">いいね一覧</h3>
+      <table class="table">
+        <tbody>
+          <% @favorite_posts.each do |posts| %>
+          <tr>
+            <td>
+              <%= link_to (posts.user) do %>
+                <%= image_tag posts.user.get_profile_image, size:"50x50" %>
+              <% end %>
+            </td>
+            <td><%= link_to posts.body.truncate(30), post_path(posts) %></td>
+            <td class="small"><%= posts.favorites.count %> いいね</td>
+            <td class="small">コメント:<%= posts.post_comments.count %>件</td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
