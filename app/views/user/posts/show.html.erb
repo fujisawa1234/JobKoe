@@ -3,21 +3,37 @@
     <div class="col-md-3">
       <%= render "user/users/info", user: @post.user %>
     </div>
+
     <div class="col-md-8 offset-md-1">
       <div class="card mb-3">
         <div class="card-header text-right">
-          投稿日:<%= @post.created_at.strftime('%Y/%m/%d') %>
           <% if @post.user == current_user %>
             <%= link_to "投稿編集", edit_post_path(@post), class: "btn btn-sm btn-secondary" %>
             <%= link_to "投稿削除", post_path, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%>
           <% end %>
+          投稿日:<%= @post.created_at.strftime('%Y/%m/%d') %>
         </div>
 
-        <div class="card-body py-5 mb-3">
+        <div class="card-body my-5">
           <p class="card-text text-center"><%= @post.body %></p>
         </div>
 
+        <div>
+          <% @post_tags.each do |tag| %>タグ:
+            <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id) %>
+          <% end %>
+        </div>
+
         <div class="card-footer text-right">
+          <% if @post.favorited_by?(current_user) %>
+            <%= link_to post_favorites_path(@post), method: :delete do %>
+              ♥
+            <% end%>
+          <% else %>
+            <%= link_to post_favorites_path(@post), method: :post do %>
+              ♡
+            <% end %>
+          <% end %>
           コメント:<%= @post.post_comments.count %>件
         </div>
       </div>
