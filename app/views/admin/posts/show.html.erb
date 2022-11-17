@@ -7,10 +7,7 @@
     <div class="col-md-8 offset-md-1">
       <div class="card mb-3">
         <div class="card-header text-right">
-          <% if @post.user == current_user %>
-            <%= link_to "投稿編集", edit_post_path(@post), class: "btn btn-sm btn-secondary" %>
-            <%= link_to "投稿削除", post_path, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%>
-          <% end %>
+          <%= link_to "投稿削除", post_path, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%>
           投稿日:<%= @post.created_at.strftime('%Y/%m/%d') %>
         </div>
 
@@ -20,36 +17,17 @@
 
         <div>
           <% @post_tags.each do |tag| %>タグ:
-            <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id) %>
+            <%= tag.tag_name %>
           <% end %>
         </div>
 
         <div class="card-footer text-right">
-          <% if @post.favorited_by?(current_user) %>
-            <%= link_to post_favorites_path(@post), method: :delete do %>
-              ♥
-            <% end%>
-          <% else %>
-            <%= link_to post_favorites_path(@post), method: :post do %>
-              ♡
-            <% end %>
-          <% end %>
-          コメント:<%= @post.post_comments.count %>件
+          ♥<%= @post.favorites.count %>
+          コメント:<%= @post.post_comments.count %>
         </div>
       </div>
 
       <table class="table">
-        <thead>
-          <tr>
-            <th>
-              <%= form_with model: [@post, @post_comment] do |f| %>
-                <%= f.text_area :comment, rows:'5', placeholder: "コメントをここに", class: "w-100" %>
-                <%= f.submit "送信する" %>
-              <% end %>
-            </th>
-          </tr>
-        </thead>
-
         <tbody>
           <tr>
             <% @post.post_comments.each do |post_comment| %>
