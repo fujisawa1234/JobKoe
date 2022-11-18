@@ -1,4 +1,6 @@
 class User::PostsController < ApplicationController
+  before_action :authenticate_user!, except: [:index]
+
   def new
     @post = current_user.posts.new
   end
@@ -27,6 +29,11 @@ class User::PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    if @post.user == current_user
+      render :edit
+    else
+      redirect_to posts_path
+    end
   end
 
   def update
@@ -49,6 +56,7 @@ class User::PostsController < ApplicationController
     @tag = Tag.find(params[:tag_id])
     @posts = @tag.posts.all
   end
+
 
   private
 
