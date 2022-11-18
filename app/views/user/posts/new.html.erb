@@ -3,6 +3,7 @@
     <div class="col-md-2"></div>
     <div class="col-md-8 text-center">
       <h2 class="my-3">新規投稿</h2>
+      <%= render "user/posts/errors", obj: @post %>
         <%= form_with model: @post, url: posts_path, method: :post do |f| %>
           <div class="form-group">
             <%= f.text_area :body, size: "100x10" %>
