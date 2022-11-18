@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row my-3">
     <div class="col-md-3">
-      <%= render "user/users/info", user: @user %>
+      <%= render "admin/users/info", user: @user %>
     </div>
 
     <div class="col-md-9">
@@ -10,7 +10,7 @@
         <tbody>
           <% @posts.each do |posts| %>
             <tr>
-              <td><%= link_to posts.body.truncate(30), post_path(posts) %></td>
+              <td><%= link_to posts.body.truncate(30), admin_post_path(posts) %></td>
               <td class="small"><%= posts.favorites.count %> いいね</td>
               <td class="small">コメント:<%= posts.post_comments.count %>件</td>
             </tr>

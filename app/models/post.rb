@@ -5,6 +5,8 @@ class Post < ApplicationRecord
   has_many :tagmaps, dependent: :destroy
   has_many :tags, through: :tagmaps
 
+  validates :body, presence: true
+
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
