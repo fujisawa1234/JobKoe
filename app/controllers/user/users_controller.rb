@@ -31,17 +31,27 @@ class User::UsersController < ApplicationController
     @favorite_posts = Post.find(favorites)
   end
 
+  def unsubscribe
+  end
 
-    private
+  def withdrawal
+    @user = User.find(params[:id])
+    @user.update(is_deleted: true)
+    reset_session
+    redirect_to root_path, notice: "退会処理を完了いたしました"
+  end
 
-    def user_params
-      params.require(:user).permit(:name,:profile_image)
+
+  private
+
+  def user_params
+    params.require(:user).permit(:name,:profile_image)
+  end
+
+  def ensure_guest_user
+    @user = User.find(params[:id])
+    if @user.name == "guestuser"
+      redirect_to posts_path, notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
     end
-
-    def ensure_guest_user
-      @user = User.find(params[:id])
-      if @user.name == "guestuser"
-        redirect_to posts_path, notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
-      end
-    end
+  end
 end
