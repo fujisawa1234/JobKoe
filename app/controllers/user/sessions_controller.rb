@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class User::SessionsController < Devise::SessionsController
+  before_action :user_state, only: [:create]
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -31,6 +32,16 @@ class User::SessionsController < Devise::SessionsController
   end
 
   def after_sign_out_path_for(resource)
-    posts_path
+    root_path
+  end
+
+  def user_state
+    @user = User.find_by(email: params[:user][:email])
+    if @user
+      if @user.valid_password?(params[:user][:email]) && (@user. active_for_authentication? == false)
+      flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"
+      redirect_to new_user_registration_path
+      end
+    end
   end
 end
