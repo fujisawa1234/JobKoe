@@ -1,0 +1,25 @@
+<table class="table table-borderless border">
+  <tr class="my-3 d-flex align-items-center justify-content-center">
+    <th>
+      <%= link_to user_path(user) do %>
+        <%= image_tag user.get_profile_image, size:"100x100" %>
+      <% end %>
+    </th>
+  </tr>
+
+  <tr class="my-3 text-center">
+    <th><%= user.name %></th>
+  </tr>
+
+  <% if user == current_user %>
+    <tr class="text-center">
+      <th><%= link_to "いいね", favorites_user_path(user) %></th>
+    </tr>
+
+    <% if user.name != "guestuser" %>
+      <tr class="my-3 text-right">
+        <th><%= link_to "編集", edit_user_path(user), class: "btn btn-outline-secondary" %></th>
+      </tr>
+    <% end %>
+  <% end %>
+</table>

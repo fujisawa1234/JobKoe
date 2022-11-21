@@ -1,0 +1,17 @@
+<table class="table border">
+  <tr class="my-3 d-flex align-items-center justify-content-center">
+    <th>
+      <%= link_to admin_user_path(user) do %>
+        <%= image_tag user.get_profile_image, size:"100x100" %>
+      <% end %>
+    </th>
+  </tr>
+
+  <tr class="my-3 text-center">
+    <th><%= user.name %></th>
+  </tr>
+
+  <tr class="my-3">
+    <th><%= link_to "編集", edit_admin_user_path(user), class: "btn btn-outline-secondary" %></th>
+  </tr>
+</table>

@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row my-3">
+    <div class="col-md-8 offset-md-2">
+      <h3 class="mb-3">ユーザー編集</h3>
+      <%= render "user/posts/errors", obj: @user %>
+      <%= form_with model: @user do |f| %>
+      <table class="table table-borderless">
+        <thead>
+          <tr class="mb-3">
+            <th><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %></th>
+          </tr>
+
+          <tr class="mb-3">
+            <th><%= f.text_field :name, placeholder: "名前" %></th>
+          </tr>
+
+          <tr class="mb-3">
+            <th><%= f.submit "保存", class: "btn btn-success" %></th>
+          </tr>
+        </thead>
+      </table>
+      <div>
+        <%= link_to "退会ページ", unsubscribe_path %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row my-3">
+    <div class="col-md-3">
+      <%= render "admin/users/info", user: @post.user %>
+    </div>
+
+    <div class="col-md-8 offset-md-1">
+      <div class="card mb-3">
+        <div class="card-header text-right">
+          <%= link_to "投稿削除", post_path, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%>
+          投稿日:<%= @post.created_at.strftime('%Y/%m/%d') %>
+        </div>
+
+        <div class="card-body my-5">
+          <p class="card-text text-center"><%= @post.body %></p>
+        </div>
+
+        <div>
+          <% @post_tags.each do |tag| %>タグ:
+            <%= tag.tag_name %>
+          <% end %>
+        </div>
+
+        <div class="card-footer text-right">
+          ♥<%= @post.favorites.count %>
+          コメント:<%= @post.post_comments.count %>
+        </div>
+      </div>
+
+      <table class="table">
+        <tbody>
+          <tr>
+            <% @post.post_comments.each do |post_comment| %>
+            <td>
+              <%= image_tag post_comment.user.get_profile_image, size:"50x50" %>
+              <%= post_comment.user.name %>
+              <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+            </td>
+            <td>
+              <%= post_comment.comment %>
+            </td>
+            <td>
+              <% if post_comment.user == current_user %>
+                <td><%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %></td>
+              <% end %>
+            </td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

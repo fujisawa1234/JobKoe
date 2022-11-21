@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row my-3 text-center">
+    <div class="col-md-8 offset-md-2">
+      <h1>JOB声</h1>
+      <p class="mb-3">
+        Job声はこんな仕事をしてみたい！<br>
+        でも実際どんな仕事内容なのか、どんな雰囲気なのか分からない。<br>
+        そんな時に在職中の人、働いていた人向けに質問をしたり<br>
+        働いてみてみんなへ共有したいことを書き込みコミュニティサイトです！
+      </p>
+      <div class="mb-3">
+        <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: "btn btn-lg btn-secondary" %>
+      </div>
+      <div class="mb-3">
+        <%= link_to "新規登録", new_user_registration_path, class: "btn btn-lg btn-primary" %>
+      </div>
+      <div class="mb-3">
+        <%= link_to "ログイン", new_user_session_path, class: "btn btn-lg btn-success" %>
+      </div>
+      <%= link_to "admin", new_admin_session_path %>
+    </div>
+  </div>
+</div>

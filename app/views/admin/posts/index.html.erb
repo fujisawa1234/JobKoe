@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h3 class="text-center my-3">質問一覧</h3>
+      <table class="table table-hover">
+        <tbody>
+          <% @posts.each do |posts| %>
+          <tr>
+            <td>
+              <%= link_to admin_user_path(posts.user) do %>
+                <%= image_tag posts.user.get_profile_image, size:"50x50" %>
+              <% end %>
+            </td>
+            <td class="text-dark"><%= link_to posts.body.truncate(30), admin_post_path(posts) %></td>
+            <td class="small"><%= posts.favorites.count %> いいね</td>
+            <td class="small">コメント:<%= posts.post_comments.count %>件</td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

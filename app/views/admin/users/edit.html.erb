@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row my-3">
+    <div class="col-md-8 offset-md-2">
+      <%= form_with model: @user do |f| %>
+      <table class="table table-borderless">
+        <thead>
+          <tr class="my-5">
+            <th><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %></th>
+          </tr>
+
+          <tr class="my-5">
+            <th><%= f.text_field :name, placeholder: "名前" %></th>
+          </tr>
+
+          <tr class="my-5">
+            <th>会員ステータス
+              <%= f.radio_button :is_deleted, false %>
+              <%= f.label :is_deleted, "有効", value: false %>
+              <%= f.radio_button :is_deleted, true %>
+              <%= f.label :is_deleted, "退会", value: true %>
+            </th>
+          </tr>
+
+          <tr class="my-5">
+            <th><%= f.submit "保存", class: "btn btn-success" %></th>
+          </tr>
+        </thead>
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>
