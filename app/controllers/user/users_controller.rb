@@ -34,6 +34,7 @@ class User::UsersController < ApplicationController
   def unsubscribe
   end
 
+  #退会
   def withdrawal
     @user = User.find(params[:id])
     @user.update(is_deleted: true)

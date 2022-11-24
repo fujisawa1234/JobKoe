@@ -17,8 +17,7 @@ class User::PostsController < ApplicationController
   end
 
   def index
-    @tag_list = Tag.all
-    @posts = Post.all
+    @posts = Post.page(params[:page]).per(10)
   end
 
   def show
