@@ -1,7 +1,9 @@
 class Admin::PostsController < ApplicationController
+  before_action :authenticate_admin!
+  
   def index
     @tag_list = Tag.all
-    @posts = Post.all
+    @posts = Post.page(params[:page]).per(10)
   end
 
   def show

@@ -18,6 +18,7 @@ class User::PostsController < ApplicationController
 
   def index
     @posts = Post.page(params[:page]).per(10)
+    @tag_ranks = Tag.find(Tagmap.group(:tag_id).order('count(tag_id) desc').limit(3).pluck(:tag_id))  #タグの投稿数上位３つを収集
   end
 
   def show
@@ -50,7 +51,8 @@ class User::PostsController < ApplicationController
     redirect_to user_path(current_user)
   end
 
-  def search
+  #タグ絞り込み
+  def tagsearch
     @tag_list = Tag.all
     @tag = Tag.find(params[:tag_id])
     @posts = @tag.posts.all

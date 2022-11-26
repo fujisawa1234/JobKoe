@@ -2,7 +2,7 @@
   <div class="row my-3">
     <div class="col-md-8 offset-md-2">
       <h3 class="mb-3">ユーザー編集</h3>
-      <%= render "user/posts/errors", obj: @user %>
+      <%= render "layouts/errors", obj: @user %>
       <%= form_with model: @user do |f| %>
       <table class="table table-borderless">
         <thead>

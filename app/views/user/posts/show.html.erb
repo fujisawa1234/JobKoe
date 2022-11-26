@@ -26,42 +26,20 @@
 
         <div class="card-footer text-right">
           <div id="favorite_<%= @post.id %>">
-            <%= render "user/favorites/btn", posts: @post %>  <%# いいね機能非同期通信 %>
+            <%= render "user/favorites/btn", posts: @post %>  <%# いいね非同期通信 %>
           </div>
-          コメント:<%= @post.post_comments.count %>件
+          <div class="comment-count">
+            <%= render "user/post_comments/count", posts: @post %>  <%# コメントカウント非同期通信 %>
+          </div>
         </div>
       </div>
 
       <div>
-        <%= form_with model: [@post, @post_comment] do |f| %>
-          <%= f.text_area :comment, rows:'5', placeholder: "コメントをここに", class: "w-100" %>
-          <%= f.submit "送信する", class: "btn btn-sm btn-success" %>
-        <% end %>
+        <%= render "user/post_comments/form", posts: @post, post_comment: @post_comment %>
       </div>
-
-      <table class="table">
-        <tbody>
-          <% @post.post_comments.each do |post_comment| %>
-          <tr>
-            <td>
-              <%= link_to user_path(post_comment.user) do %>
-                <%= image_tag post_comment.user.get_profile_image, size:"50x50" %>
-                <%= post_comment.user.name %>
-              <% end %>
-              <%= post_comment.created_at.strftime('%Y/%m/%d') %>
-            </td>
-            <td class="text-break">
-              <%= post_comment.comment %>
-            </td>
-            <td>
-              <% if post_comment.user == current_user %>
-                <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-sm btn-danger" %>
-              <% end %>
-            </td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <div class="post-comment">
+        <%= render "user/post_comments/comment", posts: @post %>  <%# コメント非同期通信 %>
+      </div>
     </div>
   </div>
 </div>

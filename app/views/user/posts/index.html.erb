@@ -6,8 +6,8 @@
 
     <div class="col-md-8 offset-md-1">
       <nav class="nav nav-fill mb-3">
-        <li class="nav-item"><%= link_to "投稿", new_post_path, class: "btn btn-primary btn-lg" %></li>
         <li class="nav-item"><%= render "user/searches/search" %><li>
+        <li class="nav-item"><%= render "user/posts/rank", tag_ranks: @tag_ranks %></li>
       </nav>
 
       <h4 class="text-center mb-3">投稿一覧</h4>
@@ -21,6 +21,7 @@
                 <% end %>
               </td>
               <td class="text-dark"><%= link_to posts.body.truncate(30), post_path(posts) %></td>
+              <td></td>
               <td class="small"><%= posts.favorites.count %> いいね</td>
               <td class="small">コメント:<%= posts.post_comments.count %>件</td>
             </tr>

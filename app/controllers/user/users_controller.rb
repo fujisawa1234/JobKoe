@@ -34,7 +34,7 @@ class User::UsersController < ApplicationController
   def unsubscribe
   end
 
-  #退会
+  #退会機能
   def withdrawal
     @user = User.find(params[:id])
     @user.update(is_deleted: true)
@@ -48,7 +48,8 @@ class User::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name,:profile_image)
   end
-
+  
+  #ゲストユーザーはプロフィール編集ができなくする
   def ensure_guest_user
     @user = User.find(params[:id])
     if @user.name == "guestuser"
