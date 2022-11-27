@@ -35,7 +35,7 @@ class User::SessionsController < Devise::SessionsController
     root_path
   end
 
-  #会員ステータスを確認
+  #会員ステータスを確認、退会済みはログイン
   def reject_user
     @user = User.find_by(email: params[:user][:email])
     if @user

@@ -7,7 +7,7 @@
     <div class="col-md-8 offset-md-1">
       <div class="card mb-3">
         <div class="card-header text-right">
-          <%= link_to "投稿削除", admin_post_path, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%>
+          <%= link_to "投稿削除", admin_post_path, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %>
           投稿日:<%= @post.created_at.strftime('%Y/%m/%d') %>
         </div>
 
@@ -40,9 +40,6 @@
             </td>
             <td class="text-break">
               <%= post_comment.comment %>
-            </td>
-            <td>
-              <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-sm btn-danger" %>
             </td>
           </tr>
           <% end %>
