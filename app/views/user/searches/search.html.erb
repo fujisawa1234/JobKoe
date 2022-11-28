@@ -13,7 +13,7 @@
                 <%= image_tag posts.user.get_profile_image, size:"50x50" %>
               <% end %>
             </td>
-            <td><%= link_to posts.body, post_path(posts) %></td>
+            <td><%= link_to posts.body.truncate(30), post_path(posts) %></td>
             <td class="small"><%= posts.favorites.count %> いいね</td>
             <td class="small">コメント:<%= posts.post_comments.count %>件</td>
           </tr>
