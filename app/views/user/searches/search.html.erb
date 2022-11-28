@@ -10,7 +10,7 @@
           <tr>
             <td>
               <%= link_to (posts.user) do %>
-                <%= image_tag posts.user.get_profile_image, saze:"50x50" %>
+                <%= image_tag posts.user.get_profile_image, size:"50x50" %>
               <% end %>
             </td>
             <td><%= link_to posts.body, post_path(posts) %></td>
