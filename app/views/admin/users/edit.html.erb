@@ -16,9 +16,9 @@
           <tr class="my-5">
             <th>会員ステータス
               <%= f.radio_button :is_deleted, false %>
-              <%= f.label :is_deleted, "有効", class: "text-success" %>
+              <%= f.label :is_deleted, "有効", value: :false, class: "text-success" %>
               <%= f.radio_button :is_deleted, true %>
-              <%= f.label :is_deleted, "退会", class: "text-muted" %>
+              <%= f.label :is_deleted, "退会", value: :true, class: "text-muted" %>
             </th>
           </tr>
 
